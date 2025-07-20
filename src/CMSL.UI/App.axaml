@@ -3,6 +3,7 @@
              x:Class="CMSL.UI.App"
              xmlns:local="using:CMSL.UI"
              xmlns:fa="using:FluentAvalonia.Styling"
+             xmlns:convert="using:CMSL.UI.Converters"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
@@ -13,4 +14,8 @@
     <Application.Styles>
         <fa:FluentAvaloniaTheme PreferUserAccentColor="True" />
     </Application.Styles>
+             
+    <Application.Resources>
+        <convert:StringToBitmapConverter x:Key="StrToImage" />
+    </Application.Resources>
 </Application>

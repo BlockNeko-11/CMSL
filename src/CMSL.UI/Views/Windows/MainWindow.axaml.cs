@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using Avalonia.Controls;
+using Avalonia.Input;
+using Avalonia.Interactivity;
 using CMSL.UI.ViewModels.Windows;
 
 namespace CMSL.UI.Views.Windows;
@@ -12,6 +14,7 @@ public partial class MainWindow : Window
         
         #if DEBUG
         MainGrid.ShowGridLines = true;
+        NavigationGrid.ShowGridLines = true;
         #endif
     }
 

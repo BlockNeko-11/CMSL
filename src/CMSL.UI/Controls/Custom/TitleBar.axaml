@@ -1,0 +1,87 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             d:DesignWidth="800" 
+             d:DesignHeight="40"
+             x:Class="CMSL.UI.Controls.Custom.TitleBar"
+             Name="Bar">
+    
+    <Grid Name="TitleGrid"
+          ColumnDefinitions="Auto, *, Auto, Auto, Auto">
+        
+        <Grid.Styles>
+            <Style Selector="Grid > Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="#44AAAAAA"/>
+            </Style>
+            <Style Selector="Grid > Button:not(:pointerover) /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+        </Grid.Styles>
+        
+        <Image Grid.Column="0"
+               Margin="8, 4, 8, 4"
+               VerticalAlignment="Center"
+               Height="32"
+               Width="32"
+               Source="{Binding #Bar.Icon, Converter={StaticResource StrToImage}, ConverterParameter=avares://CMSL.UI/Assets}" />
+        
+        <TextBlock Grid.Column="1" 
+                   Margin="8, 4, 8, 4"
+                   VerticalAlignment="Center"
+                   FontSize="{Binding #Bar.FontSize}"
+                   Text="{Binding #Bar.Title}" />
+        
+        <Button Grid.Column="2" 
+                VerticalAlignment="Stretch"
+                BorderThickness="0"
+                CornerRadius="0"
+                Name="MinimizeButton"
+                Click="MinimizeButton_OnClick">
+            
+            <TextBlock VerticalAlignment="Center"
+                       FontSize="10"
+                       FontFamily="{StaticResource SymbolThemeFontFamily}"
+                       Text="&#xE921;"/>
+        </Button>
+        
+        <Button Grid.Column="3"
+                VerticalAlignment="Stretch"
+                BorderThickness="0"
+                IsVisible="{Binding #Bar.IsMaximizeButtonVisible}"
+                CornerRadius="0"
+                Name="MaximizeButton"
+                Click="MaximizeButton_OnClick">
+            
+            <TextBlock Name="MaximizeButtonText"
+                       VerticalAlignment="Center"
+                       FontSize="10"
+                       FontFamily="{StaticResource SymbolThemeFontFamily}"
+                       Text="&#xE922;"/>
+        </Button>
+        
+        <Button Grid.Column="4" 
+                VerticalAlignment="Stretch"
+                BorderThickness="0"
+                CornerRadius="0"
+                Name="CloseButton"
+                Click="CloseButton_OnClick">
+            
+            <Button.Styles>
+                <Style Selector="Grid > Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Background" Value="Red" />
+                </Style>
+                <Style Selector="Button:pointerover > TextBlock">
+                    <Setter Property="Foreground" Value="White"/>
+                </Style>
+            </Button.Styles>
+            
+            <TextBlock VerticalAlignment="Center"
+                       FontSize="10"
+                       FontFamily="{StaticResource SymbolThemeFontFamily}"
+                       Text="&#xE711;"/>
+        </Button>
+        
+    </Grid>
+</UserControl>

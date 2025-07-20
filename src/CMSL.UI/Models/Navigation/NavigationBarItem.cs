@@ -5,15 +5,15 @@ namespace CMSL.UI.Models.Navigation;
 
 public class NavigationBarItem
 {
-    public Bitmap? ImageSource { get; set; }
+    public string Icon { get; set; }
 
     public string Title { get; set; }
 
     public PageViewModelBase ViewModel { get; set; }
 
-    public NavigationBarItem(Bitmap? imageSource, string title, PageViewModelBase viewModel)
+    public NavigationBarItem(string icon, string title, PageViewModelBase viewModel)
     {
-        ImageSource = imageSource;
+        Icon = icon;
         Title = title;
         ViewModel = viewModel;
     }

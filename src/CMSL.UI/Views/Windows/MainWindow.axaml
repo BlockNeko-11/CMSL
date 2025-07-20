@@ -1,6 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:CMSL.UI.ViewModels.Windows"
+        xmlns:controls="using:CMSL.UI.Controls.Custom"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" 
@@ -14,39 +15,51 @@
         Height="600"
         Icon="/Assets/icon.ico"
         Title="Crystal Minecraft Server Launcher"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        SystemDecorations="None">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
+    
     <Grid Name="MainGrid"
-          ColumnDefinitions="Auto, *">
-        <ListBox Name="NavigationBar" 
-                 Grid.Column="0"
-                 ItemsSource="{Binding NavigationBarItems}"
-                 SelectionMode="Single, AlwaysSelected"
-                 SelectionChanged="NavigationBar_OnSelectionChanged">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal"
-                                Margin="0, 4, 0, 4">
-                        <Image Source="{Binding ImageSource}"
-                               Width="32"
-                               Height="32"/>
-						
-                        <TextBlock Text="{Binding Title}"
-                                   Margin="8, 0, 0, 0"
-                                   VerticalAlignment="Center"
-                                   FontSize="16"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        
-        <TransitioningContentControl Grid.Column="1"
-                                     Content="{Binding CurrentPage}"/>
+          RowDefinitions="Auto, *">
+        <controls:TitleBar Grid.Row="0"
+                           Icon="icon.png"
+                           Title="Crystal Minecraft Server Launcher" />
+
+        <Grid Name="NavigationGrid"
+              Grid.Row="1"
+              ColumnDefinitions="Auto, *">
+            <ListBox Name="NavigationBar" 
+                     Grid.Column="0"
+                     ItemsSource="{Binding NavigationBarItems}"
+                     SelectionMode="Single, AlwaysSelected"
+                     SelectionChanged="NavigationBar_OnSelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0, 4, 0, 4">
+                            <Image Source="{Binding Icon, Converter={StaticResource StrToImage}, ConverterParameter=avares://CMSL.UI/Assets/Images}"
+                                   Width="32"
+                                   Height="32"/>
+						    
+                            <TextBlock Text="{Binding Title}"
+                                       Margin="8, 0, 0, 0"
+                                       VerticalAlignment="Center"
+                                       FontSize="16"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+            <TransitioningContentControl Grid.Column="1"
+                                         Content="{Binding CurrentPage}"/>
+        </Grid>
     </Grid>
 </Window>
