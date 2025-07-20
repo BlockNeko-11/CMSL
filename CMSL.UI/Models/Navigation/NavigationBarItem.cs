@@ -1,5 +1,4 @@
-﻿using Avalonia.Media.Imaging;
-using CMSL.UI.ViewModels.Pages;
+﻿using CMSL.UI.ViewModels.Pages;
 
 namespace CMSL.UI.Models.Navigation;
 

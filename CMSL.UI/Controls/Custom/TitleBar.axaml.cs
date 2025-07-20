@@ -73,10 +73,12 @@ public partial class TitleBar : UserControl
         if (GetHostWindow().WindowState == WindowState.Normal)
         {
             GetHostWindow().WindowState = WindowState.Maximized;
+            MaximizeButtonToolTip.Content = "Restore Down";
         }
         else
         {
             GetHostWindow().WindowState = WindowState.Normal;
+            MaximizeButtonToolTip.Content = "Maximize";
         }
     }
 

@@ -37,6 +37,7 @@
                 VerticalAlignment="Stretch"
                 BorderThickness="0"
                 CornerRadius="0"
+                ToolTip.Tip="Minimize"
                 Name="MinimizeButton"
                 Click="MinimizeButton_OnClick">
             
@@ -54,6 +55,11 @@
                 Name="MaximizeButton"
                 Click="MaximizeButton_OnClick">
             
+            <ToolTip.Tip>
+                <ToolTip Name="MaximizeButtonToolTip" 
+                         Content="Maximize" />
+            </ToolTip.Tip>
+            
             <TextBlock Name="MaximizeButtonText"
                        VerticalAlignment="Center"
                        FontSize="10"
@@ -65,6 +71,7 @@
                 VerticalAlignment="Stretch"
                 BorderThickness="0"
                 CornerRadius="0"
+                ToolTip.Tip="Close"
                 Name="CloseButton"
                 Click="CloseButton_OnClick">
             
