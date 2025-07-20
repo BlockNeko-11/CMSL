@@ -18,8 +18,7 @@
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaChromeHints="NoChrome"
         ExtendClientAreaToDecorationsHint="True"
-        ExtendClientAreaTitleBarHeightHint="-1"
-        SystemDecorations="None">
+        ExtendClientAreaTitleBarHeightHint="-1">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -29,7 +28,8 @@
     
     <Grid Name="MainGrid"
           RowDefinitions="Auto, *">
-        <controls:TitleBar Grid.Row="0"
+        <controls:TitleBar Name="CustomTitleBar" 
+                           Grid.Row="0"
                            Icon="icon.png"
                            Title="Crystal Minecraft Server Launcher" />
 
