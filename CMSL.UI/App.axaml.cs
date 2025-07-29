@@ -1,9 +1,13 @@
+using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
+using CMSL.Core;
+using CMSL.Core.Info;
+using CMSL.Core.Logging;
 using CMSL.UI.ViewModels.Windows;
 using CMSL.UI.Views.Windows;
 
@@ -18,6 +22,13 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        if (ApplicationLifetime == null)
+        {
+            RuntimeInfo.RunType = RunType.Designer;
+        }
+        
+        CMSLCore.Init();
+        
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
@@ -27,9 +38,25 @@ public partial class App : Application
             {
                 DataContext = new MainWindowViewModel(),
             };
+            
+            desktop.Exit += DesktopOnExit;
         }
+        
+        Logger.Info($"CMSL Version: { AppInfo.Version }");
+        Logger.Info($"Run type: { RuntimeInfo.RunType }");
 
         base.OnFrameworkInitializationCompleted();
+    }
+
+    private void DesktopOnExit(object? sender, ControlledApplicationLifetimeExitEventArgs e)
+    {
+        Shutdown();
+        Environment.Exit(0);
+    }
+
+    public void Shutdown()
+    {
+        CMSLCore.Shutdown();
     }
 
     private void DisableAvaloniaDataAnnotationValidation()

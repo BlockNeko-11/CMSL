@@ -1,6 +1,14 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace CMSL.UI.ViewModels.Pages;
 
-public class HomePageViewModel : PageViewModelBase
+public partial class HomePageViewModel : PageViewModelBase
 {
-    
+    [ObservableProperty] 
+    private int _count;
+
+    public HomePageViewModel()
+    {
+        Count = 0;
+    }
 }

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>1.0.0</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="System.Text.Json" Version="10.0.0-preview.6.25358.103" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Config\" />
+      <Folder Include="Language\" />
+    </ItemGroup>
+
+</Project>

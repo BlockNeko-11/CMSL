@@ -12,5 +12,15 @@
         <vm:HomePageViewModel />
     </Design.DataContext>
     
-    <Label HorizontalAlignment="Center" VerticalAlignment="Center">Home Page</Label>
+    <StackPanel>
+        <TextBlock HorizontalAlignment="Left" 
+                   FontSize="18"
+                   Text="This is Home page." />
+        
+        <Button Name="CountButton"
+                Click="CountButton_OnClick">Click Me!</Button>
+        
+        <TextBlock HorizontalAlignment="Left" 
+                   Text="{Binding Count}" />
+    </StackPanel>
 </UserControl>

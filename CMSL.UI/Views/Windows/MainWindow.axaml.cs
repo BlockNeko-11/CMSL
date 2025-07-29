@@ -36,11 +36,8 @@ public partial class MainWindow : Window
     {
         var i = NavigationBar.SelectedIndex;
         var vm = GetViewModel();
-        
-        var item = vm.NavigationBarItems[i];
-
-        Debug.WriteLine("Current Page: " + item.Title);
-        vm.CurrentPage = item.ViewModel;
+        vm.CurrentPage = vm.NavigationBarItems[i]
+            .ViewModel;
     }
 
     private MainWindowViewModel GetViewModel()
