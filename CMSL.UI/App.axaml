@@ -13,6 +13,9 @@
   
     <Application.Styles>
         <fa:FluentAvaloniaTheme PreferUserAccentColor="True" />
+        
+        <StyleInclude Source="avares://CMSL.UI/Styles/ButtonStyles.axaml"/>
+        <StyleInclude Source="avares://CMSL.UI/Styles/CardPanel.axaml"/>
     </Application.Styles>
              
     <Application.Resources>

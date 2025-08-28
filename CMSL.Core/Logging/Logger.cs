@@ -9,11 +9,6 @@ public static class Logger
 
     public static void Init()
     {
-        if (RuntimeInfo.RunType == RunType.Designer)
-        {
-            return;
-        }
-        
         var log = Path.Combine(AppInfo.DataDir, Constants.LogFileName);
 
         if (File.Exists(log))
@@ -26,17 +21,16 @@ public static class Logger
         {
             AutoFlush = true
         };
+
+        CMSLCore.onShutdown += Shutdown;
     }
 
     private static void Log(string level, string message)
     {
-        var formatted = $"[CMSL][{DateTimeUtils.Formatted()}] [{level}] {message}";
+        var formatted = $"[CMSL][{DateTimeUtils.LoggingFormatted()}] [{level}] {message}";
         Console.WriteLine(formatted);
 
-        if (RuntimeInfo.RunType == RunType.Program)
-        {
-            _fileWriter.WriteLine(formatted);
-        }
+        _fileWriter.WriteLine(formatted);
     }
 
     public static void Info(string message)
@@ -54,13 +48,13 @@ public static class Logger
         Log("ERROR", message);
     }
 
-    public static void Shutdown()
+    public static void Err(Exception ex)
     {
-        if (RuntimeInfo.RunType == RunType.Designer)
-        {
-            return;
-        }
-        
+        Err(ex.ToString());
+    }
+
+    private static void Shutdown()
+    {
         _fileWriter.Dispose();
     }
 }

@@ -1,4 +1,4 @@
-namespace CMSL.UI.ViewModels.Pages;
+namespace CMSL.UI.ViewModels.Pages.Main;
 
 public partial class SettingsPageViewModel : PageViewModelBase
 {

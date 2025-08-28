@@ -42,12 +42,12 @@ jobs:
           path: |
             CMSL.Launcher/bin/Release/net8.0/win-x86/publish
       
-      - name: Publish win-arm64
+      - name: Publish win-aarch64
         run: dotnet publish CMSL.Launcher -c Release -r win-arm64 -p:PublishSingleFile=true
       
-      - name: Upload win-arm64
+      - name: Upload win-aarch64
         uses: actions/upload-artifact@v4
         with:
-          name: win-arm64
+          name: win-aarch64
           path: |
             CMSL.Launcher/bin/Release/net8.0/win-arm64/publish

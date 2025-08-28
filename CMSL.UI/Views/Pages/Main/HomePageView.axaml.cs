@@ -1,12 +1,12 @@
 using System;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using CMSL.Core.Logging;
-using CMSL.UI.ViewModels.Pages;
+using CMSL.UI.ViewModels.Pages.Main;
+using CMSL.UI.ViewModels.Windows;
+using CMSL.UI.Views.Windows;
 
-namespace CMSL.UI.Views.Pages;
+namespace CMSL.UI.Views.Pages.Main;
 
 public partial class HomePageView : UserControl
 {
@@ -44,5 +44,26 @@ public partial class HomePageView : UserControl
     private HomePageViewModel GetViewModel()
     {
         return (HomePageViewModel) DataContext!;
+    }
+
+    private void CrashButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void ProgressButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        GetViewModel().Progress++;
+    }
+
+    private void ServerPanelButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        ServerPanelWindow panel = new ServerPanelWindow
+        {
+            Title = "111",
+            DataContext = new ServerPanelWindowViewModel()
+        };
+        
+        panel.Show();
     }
 }

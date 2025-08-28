@@ -1,16 +1,16 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="using:CMSL.UI.ViewModels.Pages"
+             xmlns:vm="using:CMSL.UI.ViewModels.Pages.Main"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             x:DataType="vm:ServersPageViewModel"
+             x:DataType="vm:SettingsPageViewModel"
              mc:Ignorable="d" 
              d:DesignWidth="800" 
-             d:DesignHeight="600"
-             x:Class="CMSL.UI.Views.Pages.ServersPageView">
+             d:DesignHeight="450"
+             x:Class="CMSL.UI.Views.Pages.Main.SettingsPageView">
     <Design.DataContext>
-        <vm:ServersPageViewModel />
+        <vm:SettingsPageViewModel />
     </Design.DataContext>
     
-    <Label HorizontalAlignment="Center" VerticalAlignment="Center">Servers Page</Label>
+    <Label HorizontalAlignment="Center" VerticalAlignment="Center">Settings Page</Label>
 </UserControl>

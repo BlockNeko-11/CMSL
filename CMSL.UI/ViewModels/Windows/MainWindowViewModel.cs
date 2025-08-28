@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using CMSL.UI.Models.Navigation;
 using CMSL.UI.ViewModels.Pages;
+using CMSL.UI.ViewModels.Pages.Main;
 using CommunityToolkit.Mvvm.ComponentModel;
+using FluentIcons.Common;
 
 namespace CMSL.UI.ViewModels.Windows;
 
@@ -15,31 +17,34 @@ public partial class MainWindowViewModel : ViewModelBase
     
     public MainWindowViewModel()
     { 
-        NavigationBarItems = new ObservableCollection<NavigationBarItem> {
+        NavigationBarItems = 
+        [
             new NavigationBarItem(
-                "home.png",
+                Icon.Home,
                 "Home",
                 new HomePageViewModel()
             ),
-
             new NavigationBarItem(
-                "servers.png",
+                Icon.ServerMultiple,
                 "Servers",
                 new ServersPageViewModel()
             ),
-
             new NavigationBarItem(
-                "settings.gif",
+                Icon.ArrowDownload,
+                "Downloads",
+                new DownloadsPageViewModel()
+            ),
+            new NavigationBarItem(
+                Icon.Settings,
                 "Settings",
                 new SettingsPageViewModel()
             ),
-
             new NavigationBarItem(
-                "about.gif",
+                Icon.Info,
                 "About",
                 new AboutPageViewModel()
             )
-        };
+        ];
 
         CurrentPage = NavigationBarItems[0].ViewModel;
     }

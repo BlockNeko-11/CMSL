@@ -2,13 +2,13 @@ namespace CMSL.Core.Utils;
 
 public static class DateTimeUtils
 {
-    public static string Formatted()
+    public static string LoggingFormatted()
     {
-        return Formatted(DateTime.Now);
+        return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
     }
-    
-    public static string Formatted(DateTime dateTime)
+
+    public static string CrashReportFileFormatted()
     {
-        return dateTime.ToString("yyyy-MM-dd HH:mm:ss");
+        return DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
     }
 }

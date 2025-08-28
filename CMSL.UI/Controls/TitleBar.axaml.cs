@@ -1,11 +1,8 @@
-using System;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 
-namespace CMSL.UI.Controls.Custom;
+namespace CMSL.UI.Controls;
 
 public partial class TitleBar : UserControl
 {

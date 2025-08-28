@@ -1,6 +1,9 @@
 ﻿using Avalonia;
 using System;
 using Avalonia.Logging;
+using CMSL.Core.IO;
+using CMSL.Core.Utils;
+using Logger = CMSL.Core.Logging.Logger;
 
 namespace CMSL.UI;
 
@@ -12,7 +15,16 @@ public static class CMSLGUI
     [STAThread]
     public static void Main(string[] args)
     {
-        BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+        try
+        {
+            BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+        }
+        catch (Exception ex)
+        {
+            var path = CrashReport.Generate("GUI Crashed", ex);
+            Paths.OpenWithExplorer(path);
+            App.Shutdown();
+        }
     }
 
     // Avalonia configuration, don't remove; also used by visual designer.

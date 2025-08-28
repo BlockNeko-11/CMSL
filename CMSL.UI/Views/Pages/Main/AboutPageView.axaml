@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CMSL.UI.ViewModels.Pages.Main"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:DataType="vm:AboutPageViewModel"
+             mc:Ignorable="d" 
+             d:DesignWidth="800" 
+             d:DesignHeight="600"
+             x:Class="CMSL.UI.Views.Pages.Main.AboutPageView">
+    <Design.DataContext>
+        <vm:AboutPageViewModel />
+    </Design.DataContext>
+    
+    <!-- <StackPanel Margin="5 10"> -->
+    <!--     <TextBlock FontSize="16" -->
+    <!--                Text="A Minecraft server launcher and manager."/> -->
+    <!--      -->
+    <!--     <StackPanel Orientation="Horizontal"> -->
+    <!--         <TextBlock FontSize="16" -->
+    <!--                    Text="Version: "></TextBlock> -->
+    <!--     </StackPanel> -->
+    <!-- </StackPanel> -->
+    <StackPanel Margin="5 10">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="avares://CMSL.UI/Assets/icon.png"
+                   Width="64"
+                   Height="64"/>
+            
+            <StackPanel Orientation="Vertical">
+                <TextBlock FontSize="20"
+                           Text="Crystal Minecraft Server Launcher (CMSL)"
+                           VerticalAlignment="Center"/>
+                
+                <TextBlock FontSize="16"
+                           Text="{Binding Version}"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+        
+        <Border Classes="card_panel">
+            <StackPanel>
+                <TextBlock Classes="card_panel_title" 
+                           Text="Links"/>
+                
+                <Button Name="SourceCodeButton" 
+                        Classes="no_border"
+                        Click="SourceCodeButton_OnClick"
+                        ToolTip.Tip="Source code repository (GitHub)">
+                    <Svg Path="avares://CMSL.UI/Assets/github_icon.svg" 
+                         Height="24" 
+                         Width="24"/>
+                </Button>
+            </StackPanel>
+        </Border>
+        
+        <Border Classes="card_panel">
+            <StackPanel>
+                <TextBlock Classes="card_panel_title"
+                           Text="License"/>
+                
+                <TextBlock Text="CMSL is under the GNU GENERAL PUBLIC LICENSE V3 License."/>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

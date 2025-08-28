@@ -12,9 +12,7 @@ public class StringToBitmapConverter : IValueConverter
     {
         try
         {
-            var assets = (string) parameter;
-            var resource = (string) value;
-            return new Bitmap(AssetLoader.Open(new Uri(assets + "/" + resource)));
+            return new Bitmap(AssetLoader.Open(new Uri($"{(string) parameter}/{(string) value}")));
         } 
         catch (Exception)
         {

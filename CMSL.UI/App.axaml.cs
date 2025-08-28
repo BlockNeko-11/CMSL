@@ -1,9 +1,9 @@
 using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
+using System.Threading.Tasks;
 using Avalonia.Markup.Xaml;
 using CMSL.Core;
 using CMSL.Core.Info;
@@ -18,17 +18,11 @@ public partial class App : Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+        CMSLCore.Init();
     }
 
     public override void OnFrameworkInitializationCompleted()
     {
-        if (ApplicationLifetime == null)
-        {
-            RuntimeInfo.RunType = RunType.Designer;
-        }
-        
-        CMSLCore.Init();
-        
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
@@ -42,19 +36,39 @@ public partial class App : Application
             desktop.Exit += DesktopOnExit;
         }
         
+        AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+        TaskScheduler.UnobservedTaskException += OnUnobservedTaskException;
+        
         Logger.Info($"CMSL Version: { AppInfo.Version }");
-        Logger.Info($"Run type: { RuntimeInfo.RunType }");
+        Logger.Info($"OS: {SystemInfo.OS}");
+        Logger.Info($"Arch: {SystemInfo.Arch}");
 
         base.OnFrameworkInitializationCompleted();
+    }
+    
+    // For UI Thread
+    private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+    {
+        Logger.Err("Unhandled exception has caught!");
+        Logger.Err($"Exception: {e.ExceptionObject as Exception}");
+    }
+
+    // For other threads
+    private void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
+    {
+        Logger.Err("task execution exception has caught!");
+        Logger.Err($"Exception: {e.Exception}");
+        e.SetObserved();
     }
 
     private void DesktopOnExit(object? sender, ControlledApplicationLifetimeExitEventArgs e)
     {
+        Logger.Info("Shutting down CMSL");
         Shutdown();
         Environment.Exit(0);
     }
 
-    public void Shutdown()
+    public static void Shutdown()
     {
         CMSLCore.Shutdown();
     }

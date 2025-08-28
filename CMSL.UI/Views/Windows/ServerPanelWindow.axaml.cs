@@ -7,9 +7,11 @@ using CMSL.UI.ViewModels.Windows;
 
 namespace CMSL.UI.Views.Windows;
 
-public partial class MainWindow : Window
+
+// Title -> Server Name
+public partial class ServerPanelWindow : Window
 {
-    public MainWindow()
+    public ServerPanelWindow()
     {
         InitializeComponent();
 
@@ -28,10 +30,10 @@ public partial class MainWindow : Window
             UseNativeTitleBar();
         }
         
-        #if DEBUG
+#if DEBUG
         MainGrid.ShowGridLines = true;
         NavigationGrid.ShowGridLines = true;
-        #endif
+#endif
     }
 
     private void UseNativeTitleBar()
@@ -51,8 +53,8 @@ public partial class MainWindow : Window
             .ViewModel;
     }
 
-    private MainWindowViewModel GetViewModel()
+    private ServerPanelWindowViewModel GetViewModel()
     {
-        return (MainWindowViewModel) DataContext!;
+        return (ServerPanelWindowViewModel) DataContext!;
     }
 }

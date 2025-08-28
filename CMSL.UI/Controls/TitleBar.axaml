@@ -5,7 +5,7 @@
              mc:Ignorable="d" 
              d:DesignWidth="800" 
              d:DesignHeight="40"
-             x:Class="CMSL.UI.Controls.Custom.TitleBar"
+             x:Class="CMSL.UI.Controls.TitleBar"
              Name="Bar">
     
     <Grid Name="TitleGrid"
@@ -31,7 +31,6 @@
                    Margin="8, 4, 8, 4"
                    VerticalAlignment="Center"
                    FontSize="{Binding #Bar.FontSize}"
-                   FontWeight="Bold"
                    Text="{Binding #Bar.Title}" />
         
         <Button Grid.Column="2" 
